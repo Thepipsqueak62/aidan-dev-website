@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import Link from "next/link";
 
 const navLinks = [
     { label: "About", href: "/#about" },
@@ -41,12 +42,13 @@ export default function Navbar() {
             }`}
         >
             <div className="max-w-6xl mx-auto px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-                <a
-                    href="#hero"
-                    className="text-sm font-semibold tracking-tight text-foreground hover:text-primary transition-colors"
-                >
+
+                <Link href="/"
+                      onClick={()=>window.scrollTo({top:0,behavior:"smooth"})}
+                      className="text-sm font-semibold tracking-tight text-foreground hover:text-primary transition-colors">
                     aidan<span className="text-primary">.</span>dev
-                </a>
+                </Link>
+
 
                 <nav className="hidden md:flex items-center gap-1">
                     {navLinks.map((link, i) => (
