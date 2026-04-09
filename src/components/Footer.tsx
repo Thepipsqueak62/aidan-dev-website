@@ -39,7 +39,7 @@ export default function Footer() {
                 </div>
 
                 <p className="text-xs text-muted-foreground font-mono order-3">
-                    React · Vite · shadcn/ui
+                    Next.JS· shadcn/ui
                 </p>
             </div>
         </motion.footer>

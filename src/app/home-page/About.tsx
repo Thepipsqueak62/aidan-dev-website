@@ -10,8 +10,8 @@ import {fadeUp, slideInLeft, slideInRight} from "@/lib/animations";
 
 
 const stats = [
-    { value: "3+", label: "Years experience" },
-    { value: "20+", label: "Projects shipped" },
+    { value: "7", label: "Years experience" },
+    { value: "120", label: "Projects shipped" },
     { value: "10+", label: "Happy clients" },
 ];
 
@@ -89,7 +89,7 @@ export default function About() {
                                     <div className="space-y-3 text-sm">
                                         <div className="flex items-center justify-between">
                                             <span className="text-muted-foreground text-xs font-mono">Location</span>
-                                            <span className="font-medium text-sm">Your City · Remote</span>
+                                            <span className="font-medium text-sm">Ocala FL · Remote</span>
                                         </div>
                                         <div className="flex items-center justify-between">
                                             <span className="text-muted-foreground text-xs font-mono">Status</span>

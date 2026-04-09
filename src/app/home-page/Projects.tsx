@@ -16,53 +16,30 @@ import { FaGithub } from "react-icons/fa";
 import { SectionHeading } from "./About";
 import {SectionWrapper} from "@/components/SectionWrapper";
 import {fadeUp, scaleIn} from "@/lib/animations";
+import {useEffect, useState} from "react";
+import ProjectsData from "@/app/sanity-querys/projects-data";
+import {urlFor} from "@/lib/sanity";
 
-interface Project {
-    title: string;
-    description: string;
-    tags: string[];
-    github?: string;
-    live?: string;
-    featured?: boolean;
-}
 
-const projects: Project[] = [
-    {
-        title: "Project Alpha",
-        description:
-            "A full-stack SaaS application with real-time collaboration, role-based access control, and Stripe billing integration.",
-        tags: ["Next.js", "PostgreSQL", "Prisma", "Stripe"],
-        github: "https://github.com",
-        live: "https://example.com",
-        featured: true,
-    },
-    {
-        title: "Project Beta",
-        description:
-            "REST API service for processing and aggregating data from multiple third-party providers with caching and rate limiting.",
-        tags: ["Node.js", "Redis", "Docker", "TypeScript"],
-        github: "https://github.com",
-        featured: true,
-    },
-    {
-        title: "Project Gamma",
-        description:
-            "Open-source CLI tool that automates repetitive dev workflows, used by 500+ developers on GitHub.",
-        tags: ["Go", "CLI", "Open Source"],
-        github: "https://github.com",
-        live: "https://example.com",
-    },
-    {
-        title: "Project Delta",
-        description:
-            "Mobile-first e-commerce storefront with server-side rendering, image optimization, and blazing-fast page loads.",
-        tags: ["React", "Tailwind CSS", "Vercel"],
-        github: "https://github.com",
-        live: "https://example.com",
-    },
-];
+
+
 
 export default function Projects() {
+    const [projectsdata,setProjects] = useState<ProjectDataInterface[]>([]);
+
+    useEffect(() => {
+        const loadData = async () =>{
+            try {
+                const newData = await ProjectsData()
+                setProjects(newData);
+            }
+            catch (error){
+                console.log("Error Loading Projects:",error);
+            }
+        }
+        loadData();
+    }, []);
+
     return (
         <section id="projects" className="py-20 sm:py-28 scroll-mt-16 bg-muted/30">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -72,9 +49,9 @@ export default function Projects() {
                     </motion.div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mt-10 sm:mt-14">
-                        {projects.map((project, i) => (
+                        {projectsdata.map((project, i) => (
                             <motion.div
-                                key={project.title}
+                                key={project.projectTitle}
                                 variants={scaleIn}
                                 custom={i}
                                 whileHover={{ y: -4 }}
@@ -84,6 +61,7 @@ export default function Projects() {
                             </motion.div>
                         ))}
                     </div>
+
 
                     <motion.div variants={fadeUp} className="mt-10 text-center">
                         <Button variant="outline" size="sm" asChild>
@@ -104,12 +82,21 @@ export default function Projects() {
     );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectCard({ project }: { project: ProjectDataInterface }) {
     return (
         <Card className="flex flex-col h-full transition-shadow duration-200 hover:shadow-md">
+            {project.projectImage && (
+                <img
+                    src={urlFor(project.projectImage).url()}
+                    alt={project.projectTitle}
+                    width={500}
+                    height={300}
+                    className="rounded-t-md object-cover w-full h-48"
+                />
+            )}
             <CardHeader className="pb-3">
                 <div className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-sm sm:text-base">{project.title}</CardTitle>
+                    <CardTitle className="text-sm sm:text-base">{project.projectTitle}</CardTitle>
                     {project.featured && (
                         <Badge
                             variant="secondary"
@@ -120,13 +107,13 @@ function ProjectCard({ project }: { project: Project }) {
                     )}
                 </div>
                 <CardDescription className="text-xs sm:text-sm leading-relaxed">
-                    {project.description}
+                    {project.ProjectDescription}
                 </CardDescription>
             </CardHeader>
 
             <CardContent className="flex-1 pb-3">
                 <div className="flex flex-wrap gap-1.5">
-                    {project.tags.map((tag) => (
+                    {(project.tags ?? []).map((tag) => (
                         <Badge key={tag} variant="outline" className="text-[10px] sm:text-xs font-mono">
                             {tag}
                         </Badge>

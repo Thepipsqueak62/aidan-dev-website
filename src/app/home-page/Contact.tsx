@@ -8,7 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent } from "@/components/ui/card";
 import { Mail, Send, CheckCircle } from "lucide-react";
-import { FaGithub, FaLinkedinIn } from "react-icons/fa";
+import {FaDev, FaDiscord, FaGithub, FaLinkedinIn} from "react-icons/fa";
 
 import { SectionHeading } from "./About";
 import {SectionWrapper} from "@/components/SectionWrapper";
@@ -17,14 +17,14 @@ import {fadeUp, slideInLeft, slideInRight} from "@/lib/animations";
 const socials = [
     {
         icon: Mail,
-        label: "you@example.com",
-        href: "mailto:you@example.com",
+        label: "aidanali0001@gmail.com",
+        href: "aidanali0001@gmail.com",
         isReactIcon: false,
     },
     {
         icon: FaGithub,
-        label: "github.com/yourhandle",
-        href: "https://github.com",
+        label: "https://github.com/Thepipsqueak62",
+        href: "https://github.com/Thepipsqueak62",
         isReactIcon: true,
     },
     {
@@ -33,6 +33,16 @@ const socials = [
         href: "https://linkedin.com",
         isReactIcon: true,
     },
+    {
+        icon:FaDiscord,
+        label: "Add me on Discord",
+        href: "https://discord.com/users/1392773662406344764",
+    },
+    {
+        icon: FaDev,
+        label: "Dev.To",
+        href: "https://dev.to/aidanali",
+    }
 ];
 
 export default function Contact() {
