@@ -10,7 +10,8 @@ async function getData(): Promise<ProjectDataInterface[]> {
     github,
     live,
     featured,
-    projectImage
+    projectImage,
+    content
 }`;
 
     return await client.fetch(query);

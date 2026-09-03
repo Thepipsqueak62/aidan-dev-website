@@ -1,6 +1,4 @@
 "use client"
-
-
 import Hero from "@/components/hero/Hero";
 import About from "@/app/home-page/About";
 import Projects from "@/app/home-page/Projects";

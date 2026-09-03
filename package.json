@@ -10,9 +10,8 @@
     "format": "biome format --write"
   },
   "dependencies": {
-    "@portabletext/react": "^6.0.3",
+    "@portabletext/react": "^6.2.0",
     "@sanity/image-url": "^2.1.1",
-    "@tailwindcss/typography": "^0.5.19",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.38.0",
@@ -32,6 +31,7 @@
   "devDependencies": {
     "@biomejs/biome": "2.2.0",
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/typography": "^0.5.20",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

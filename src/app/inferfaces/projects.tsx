@@ -6,5 +6,6 @@ interface ProjectDataInterface {
     live?: string;
     featured?: boolean;
     projectImage:any;
+    content:any;
 
 }

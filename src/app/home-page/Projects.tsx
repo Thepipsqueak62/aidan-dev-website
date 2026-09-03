@@ -19,6 +19,7 @@ import {fadeUp, scaleIn} from "@/lib/animations";
 import {useEffect, useState} from "react";
 import ProjectsData from "@/app/sanity-querys/projects-data";
 import {urlFor} from "@/lib/sanity";
+import {PortableText} from "@portabletext/react";
 
 
 
@@ -48,7 +49,7 @@ export default function Projects() {
                         <SectionHeading label="Projects" title="Things I've built" />
                     </motion.div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 mt-10 sm:mt-14">
+                    <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 mt-10 sm:mt-14">
                         {projectsdata.map((project, i) => (
                             <motion.div
                                 key={project.projectTitle}
@@ -66,7 +67,7 @@ export default function Projects() {
                     <motion.div variants={fadeUp} className="mt-10 text-center">
                         <Button variant="outline" size="sm" asChild>
                             <a
-                                href="https://github.com"
+                                href="https://gist.github.com/Thepipsqueak62/d2f0a09f22582f33bec32b520a13c38e"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="gap-2"
@@ -91,7 +92,7 @@ function ProjectCard({ project }: { project: ProjectDataInterface }) {
                     alt={project.projectTitle}
                     width={500}
                     height={300}
-                    className="rounded-t-md object-cover w-full h-48"
+                    className="rounded-t-md object-cover w-full h-max"
                 />
             )}
             <CardHeader className="pb-3">
@@ -109,10 +110,14 @@ function ProjectCard({ project }: { project: ProjectDataInterface }) {
                 <CardDescription className="text-xs sm:text-sm leading-relaxed">
                     {project.ProjectDescription}
                 </CardDescription>
+
             </CardHeader>
 
             <CardContent className="flex-1 pb-3">
-                <div className="flex flex-wrap gap-1.5">
+                <div className="prose prose-sm dark:prose-invert">
+                    <PortableText value={project.content} />
+                </div>
+                <div className="flex flex-wrap gap-1.5 py-3">
                     {(project.tags ?? []).map((tag) => (
                         <Badge key={tag} variant="outline" className="text-[10px] sm:text-xs font-mono">
                             {tag}
@@ -121,7 +126,7 @@ function ProjectCard({ project }: { project: ProjectDataInterface }) {
                 </div>
             </CardContent>
 
-            <CardFooter className="gap-2 pt-0">
+            <CardFooter className="gap-2 pt-2 py-2">
                 {project.github && (
                     <Button size="sm" variant="ghost" className="h-8 px-2 text-xs" asChild>
                         <a href={project.github} target="_blank" rel="noopener noreferrer">

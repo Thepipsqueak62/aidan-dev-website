@@ -53,7 +53,7 @@ export default async function BlogArticle({ params }: PageProps) {
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
 
                 {/* Back link */}
-                <div className="absolute top-8 left-6 md:left-16">
+                <div className="absolute top-8 left-6 md:left-16 py-9">
                     <Link
                         href="/blog"
                         className="inline-flex items-center gap-2 text-zinc-400 hover:text-white font-mono text-xs uppercase tracking-widest transition-colors"
